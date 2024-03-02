@@ -39,7 +39,6 @@ public class Level1 extends JFrame implements MouseListener, MouseMotionListener
      * Loads the images from files.
      */
     public void img() {
-        System.out.println(8);
         try {
             lvl1Bg1 = ImageIO.read(new File("./mnParExt.png"));
             mAvt0 = ImageIO.read(new File("./mnAvtM0.png"));
@@ -297,9 +296,6 @@ public class Level1 extends JFrame implements MouseListener, MouseMotionListener
     @Override
     public void keyPressed(KeyEvent e) {
         walked = true;
-        if (e.getKeyChar() == '-') {
-            System.out.println(avX+", "+avY);
-        }
         if (e.getKeyChar() == 'w' || e.getKeyChar() == 'W') {
             directions[0] = true;
         }
