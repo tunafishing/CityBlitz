@@ -17,13 +17,15 @@ public class Organizer {
     // Main application window
     public static JFrame frame = new JFrame("CityBlitz");
     // Current screen index
-    public static int screen1 = 1;
+    public static int screen1 = 0;
     // Flag to indicate if it's the initial screen
     public static boolean initScreen = true;
     // Flags for unlocking levels
     public static boolean unlock2, unlock3;
     // Generation number
     public static int gen;
+    // leaves number
+    public static int leaves=0;
     // Player name
     public String name;
     // Timer for screen updates
