@@ -17,7 +17,7 @@ import java.io.IOException;
 public class Level1 extends JFrame implements MouseListener, MouseMotionListener, KeyListener {
     private boolean walked, cardPick, pass, cardIsOpen;
     private boolean ticket = true;
-    private boolean hover1, hover2, hover3, hover4, hover5;
+    private boolean hover1, hover2, hover3, hover4, hover5,hover6;
     private boolean bpOpen;
     private int screen;
     private boolean[] directions = new boolean[4];
@@ -25,8 +25,8 @@ public class Level1 extends JFrame implements MouseListener, MouseMotionListener
     Image tb, fg, bg, avt0, avt1, avt2, avt3, avatar, lvl1Bg1, mAvt0, mAvt1, mAvt2, mAvt3, fAvt1, fAvt0, fAvt2, fAvt3,
             lvl1Bg2, lvl1Bg3, bpOpeny, tickety,
             ticketyHov, check, bpButt, bpButtHov, lvl1Fg1, tut1, lvl1Fg2;
-    Image inv1, butt2, inv, chk, butt1, tut2, tut3, tut4, card, cardHov, lvl1Fg3, cardInv, cardInvHov, lvl1Bg4, lvl1Fg4,
-            tut5, returnButt, returnButtHov, cardOpen;
+    Image invLeaf, inv1, butt2, inv, chk, butt1, tut2, tut3, tut4, card, cardHov, lvl1Fg3, cardInv, cardInvHov, lvl1Bg4, lvl1Fg4,
+            tut5, returnButt, returnButtHov, cardOpen, leaf, leafHov, leafInv, leafInvHov;
 
     /**
      * Constructs a Level1 object and initializes the images.
@@ -74,6 +74,10 @@ public class Level1 extends JFrame implements MouseListener, MouseMotionListener
             tut5 = ImageIO.read(new File("./mnTut5.png"));
             returnButt = ImageIO.read(new File("./mnReturn.png"));
             returnButtHov = ImageIO.read(new File("./mnReturnPress.png"));
+            leaf = ImageIO.read(new File("./mnLeaf.png"));
+            leafHov=ImageIO.read(new File("./mnLeafPress.png"));
+            leafInv=ImageIO.read(new File("./mnLeafInv.png"));
+            leafInvHov=ImageIO.read(new File("./mnLeafInvPress.png"));
         }
 
         catch (IOException e) {
@@ -200,7 +204,11 @@ public class Level1 extends JFrame implements MouseListener, MouseMotionListener
 
             inv = bpOpeny.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
             g.drawImage(inv, 0, 0, null);
-
+            invLeaf=leafInv.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(hover6)
+            invLeaf=leafInvHov.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            g.drawImage(invLeaf, 0, 0, null);
+            
             if (ticket && screen == 1) {
                 inv1 = tickety.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
                 if (hover2)
@@ -251,6 +259,7 @@ public class Level1 extends JFrame implements MouseListener, MouseMotionListener
      * @param e the MouseEvent containing information about the mouse activity.
      */
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getX()+", "+e.getY());
         if (hover1 && !bpOpen && screen != 0) {
             bpOpen = true;
 
@@ -377,6 +386,12 @@ public class Level1 extends JFrame implements MouseListener, MouseMotionListener
 
         } else {
             hover5 = false;
+
+        }
+        if (x > 513 && x < 643 && y+30 > 298 && y+30 < 434) {
+            hover6 = true;
+        } else {
+            hover6 = false;
 
         }
     }
