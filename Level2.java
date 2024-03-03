@@ -15,19 +15,18 @@ import java.io.IOException;
  *         Created on 2024/03/03
  */
 public class Level2 extends JFrame implements MouseListener, MouseMotionListener, KeyListener {
-    private boolean walked, go1, go2, mapPick, mapOpen, pass, cardIsOpen;
+    private boolean walked, go1, go2, mapPick, mapOpen, pass, cardIsOpen, leaf1Pick, leafGo1, leafGo2, leafPass, leaf2Pick, leaf3Pick, leaf4Pick, leavesIsOpen;
     private int screen;
-    private boolean hover1, hover2, hover3, hover4, hover5, hover6;
+    private boolean hover1, hover2, hover3, hover4, hover5, hover6, hover7, hover8, hover9, hover10, hover11, hover12, trophyIsOpen;
     private boolean bpOpen;
     private boolean[] directions = new boolean[4];
     private int avX = 350, avY = 250;
     Image avt0, avt1, avt2, avt3, avatar, lvl2Bg14, mAvt0, mAvt1, mAvt2, mAvt3, fAvt0, fAvt1, fAvt2, fAvt3, lvl2Bg13,
-            lvl2Bg12, bpOpeny, bpButt, bpButtHov,
-            lvl2Fg14, tut6, lvl2Fg13, map, tut7;
+            lvl2Bg12, bpOpeny, bpButt, bpButtHov,lvl2Fg14, tut6, lvl2Fg13, map, tut7, obj2, obj3;
     Image tut8, mapHov, lvl2Fg12, cardInv, cardInvHov, mapInv, mapInvHov, lvl2Bg1, lvl2Fg1, returnButt, returnButtHov,
-            goButt, goButtHov, lvl2Bg2, lvl2Bg3, lvl2Bg4;
+            goButt, goButtHov, lvl2Bg2, lvl2Bg3, lvl2Bg4, invLeaf, tut20, tut21, trophyInv, trophyInvHov, trophyOpen, inv3;
     Image lvl2Fg2, lvl2Fg3, lvl2Fg4, mapView, lvl2Bg5, lvl2Bg6, lvl2Bg7, lvl2Bg8, lvl2Bg9, lvl2Bg10, lvl2Bg11, lvl2Fg5,
-            lvl2Fg6, lvl2Fg7, lvl2Fg8, lvl2Fg9, lvl2Fg10, lvl2Fg11, cardOpen;
+            lvl2Fg6, lvl2Fg7, lvl2Fg8, lvl2Fg9, lvl2Fg10, lvl2Fg11, cardOpen, leaf, leafHov, leafInv, leafInvHov, leavesOpen0, leavesOpen1, leavesOpen2, leavesOpen3, leavesOpen4, leavesOpen5, leavesOpen6;
 
     /**
      * Constructs a Level2 object and initializes the images.
@@ -61,6 +60,8 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
             map = ImageIO.read(new File("./mnMap.png"));
             tut7 = ImageIO.read(new File("./mnTut7.png"));
             tut8 = ImageIO.read(new File("./mnTut8.png"));
+            tut20 = ImageIO.read(new File("./mnTut20.png"));
+            tut21 = ImageIO.read(new File("./mnTut21.png"));
             mapHov = ImageIO.read(new File("./mnMapPress.png"));
             lvl2Fg12 = ImageIO.read(new File("./mnParInt2Fg.png"));
             cardInv = ImageIO.read(new File("./mnCardInv.png"));
@@ -95,6 +96,20 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
             lvl2Fg9 = ImageIO.read(new File("./mnParInt3Fg.png"));
             lvl2Fg10 = ImageIO.read(new File("./mnParInt4Fg.png"));
             lvl2Fg11 = ImageIO.read(new File("./mnParInt13Fg.png"));
+            leaf = ImageIO.read(new File("./mnLeaf.png"));
+            leafHov=ImageIO.read(new File("./mnLeafPress.png"));
+            leafInv=ImageIO.read(new File("./mnLeafInv.png"));
+            leafInvHov=ImageIO.read(new File("./mnLeafInvPress.png"));
+            leavesOpen0=ImageIO.read(new File("./mnLeavesOpen0.png"));
+            leavesOpen1=ImageIO.read(new File("./mnLeavesOpen1.png"));
+            leavesOpen2=ImageIO.read(new File("./mnLeavesOpen2.png"));
+            leavesOpen3=ImageIO.read(new File("./mnLeavesOpen3.png"));
+            leavesOpen4=ImageIO.read(new File("./mnLeavesOpen4.png"));
+            leavesOpen5=ImageIO.read(new File("./mnLeavesOpen5.png"));
+            leavesOpen6=ImageIO.read(new File("./mnLeavesOpen6.png"));
+            trophyInv=ImageIO.read(new File("./mnTrophy.png"));
+            trophyInvHov=ImageIO.read(new File("./mnTrophyPress.png"));
+            trophyOpen=ImageIO.read(new File("./mnTrophyOpen.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,6 +135,13 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
                 avt1 = fAvt1.getScaledInstance(72, 120, Image.SCALE_DEFAULT);
                 avt2 = fAvt2.getScaledInstance(72, 120, Image.SCALE_DEFAULT);
                 avt3 = fAvt3.getScaledInstance(72, 120, Image.SCALE_DEFAULT);
+            }
+
+            if (!leaf1Pick) {
+                obj2 = leaf.getScaledInstance(36, 36, Image.SCALE_DEFAULT);
+                if (hover7)
+                    obj2 = leafHov.getScaledInstance(36, 36, Image.SCALE_DEFAULT);
+                g.drawImage(obj2, 190, 270, null);
             }
         }
         if (screen == 1) {
@@ -148,6 +170,13 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
         if (screen == 5) {
             Image bg = lvl2Bg6.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
             g.drawImage(bg, 0, 0, null);
+
+            if (!leaf2Pick) {
+                Image obj3 = leaf.getScaledInstance(36, 36, Image.SCALE_DEFAULT);
+                if (hover9)
+                    obj3 = leafHov.getScaledInstance(36, 36, Image.SCALE_DEFAULT);
+                g.drawImage(obj3, 505, 250, null);
+            }
         }
         if (screen == 6) {
             Image bg = lvl2Bg7.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
@@ -156,6 +185,13 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
         if (screen == 7) {
             Image bg = lvl2Bg8.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
             g.drawImage(bg, 0, 0, null);
+
+            if (!leaf3Pick) {
+                Image obj4 = leaf.getScaledInstance(36, 36, Image.SCALE_DEFAULT);
+                if (hover10)
+                    obj4 = leafHov.getScaledInstance(36, 36, Image.SCALE_DEFAULT);
+                g.drawImage(obj4, 150, 300, null);
+            }
         }
         if (screen == 8) {
             Image bg = lvl2Bg9.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
@@ -180,6 +216,13 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
         if (screen == 13) {
             Image bg = lvl2Bg14.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
             g.drawImage(bg, 0, 0, null);
+
+            if (!leaf4Pick) {
+                Image obj5 = leaf.getScaledInstance(36, 36, Image.SCALE_DEFAULT);
+                if (hover11)
+                    obj5 = leafHov.getScaledInstance(36, 36, Image.SCALE_DEFAULT);
+                g.drawImage(obj5, 620, 150, null);
+            }
         }
         if (!walked)
             avatar = avt0;
@@ -316,6 +359,7 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
             Image fg = lvl2Fg1.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
             g.drawImage(fg, 0, 0, null);
 
+            if(avX<=250)leafPass=true;
             if (!go1) {
                 Image tb = tut6.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
                 g.drawImage(tb, 0, -60, null);
@@ -325,10 +369,22 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
                     butt2 = goButtHov.getScaledInstance(87, 63, Image.SCALE_DEFAULT);
                 g.drawImage(butt2, 640, 255, null);
             }
+            if(!leafGo1&&!leafGo2){
+                if(leafPass){
+                    Image tb = tut20.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+                    g.drawImage(tb, 0, 0, null);
+                }
+            }
+            else if(leafGo1&&!leafGo2){
+                Image tb = tut21.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+                    g.drawImage(tb, 0, 0, null);
+            }
+            else{}
         }
         if (screen == 1) {
             Image fg = lvl2Fg2.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
             g.drawImage(fg, 0, 0, null);
+            g.drawImage(leaf,60, 250, null);
         }
         if (screen == 2) {
             Image fg = lvl2Fg3.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
@@ -406,6 +462,11 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
             Image inv = bpOpeny.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
             g.drawImage(inv, 0, 0, null);
 
+            invLeaf=leafInv.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(hover8)
+            invLeaf=leafInvHov.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            g.drawImage(invLeaf, 0, 0, null);
+
             Image inv1 = cardInv.getScaledInstance(66, 96, Image.SCALE_DEFAULT);
             if (hover2)
                 inv1 = cardInvHov.getScaledInstance(66, 96, Image.SCALE_DEFAULT);
@@ -421,6 +482,13 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
                 Image mapViewy = mapView.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
                 g.drawImage(mapViewy, 0, 0, null);
             }
+            if(Organizer.leaves>=6){
+                inv3=trophyInv.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+                if(hover12){
+                    inv3=trophyInvHov.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+                }
+                g.drawImage(inv3, 0, 0, null);
+            }
         }
         Image butt1 = bpButt.getScaledInstance(64, 70, Image.SCALE_DEFAULT);
         if (hover1)
@@ -435,6 +503,30 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
             Image obj1 = cardOpen.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
             g.drawImage(obj1, 0, 0, null);
         }
+        if (leavesIsOpen) {
+            Color transpBlack = new Color(0, 0, 0, 85);
+            g.setColor(transpBlack);
+            g.fillRect(0, 0, 768, 576);
+
+            Image obj3=leavesOpen0.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(Organizer.leaves==0) obj3=leavesOpen0.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(Organizer.leaves==1) obj3=leavesOpen1.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(Organizer.leaves==2) obj3=leavesOpen2.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(Organizer.leaves==3) obj3=leavesOpen3.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(Organizer.leaves==4) obj3=leavesOpen4.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(Organizer.leaves==5) obj3=leavesOpen5.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            if(Organizer.leaves==6) obj3=leavesOpen6.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+
+            g.drawImage(obj3, 0, 0, null);
+        }
+        if (trophyIsOpen) {
+            Color transpBlack = new Color(0, 0, 0, 85);
+            g.setColor(transpBlack);
+            g.fillRect(0, 0, 768, 576);
+
+            Image obj1 = trophyOpen.getScaledInstance(768, 554, Image.SCALE_DEFAULT);
+            g.drawImage(obj1, 0, 0, null);
+        }
     }
 
     /**
@@ -443,6 +535,24 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
      * @param e the MouseEvent containing information about the mouse activity.
      */
     public void mouseClicked(MouseEvent e) {
+        if(bpOpen&&hover12&&!trophyIsOpen&&Organizer.leaves>=6){
+            trophyIsOpen=true;
+            bpOpen = false;
+        } else if (trophyIsOpen){
+            trophyIsOpen=false;
+            bpOpen = true;
+        }
+        if(bpOpen&&hover8&&!leavesIsOpen){
+            leavesIsOpen=true;
+            bpOpen = false;
+        } else if (leavesIsOpen){
+            leavesIsOpen=false;
+            bpOpen = true;
+        }
+        if (screen == 0 && hover7 && leafGo2){
+            leaf1Pick=true;
+            Organizer.leaves++;
+        }
         if (hover1 && !bpOpen) {
             bpOpen = true;
 
@@ -459,11 +569,29 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
         if (screen == 0 && hover3 && !go1) {
             go1 = true;
         }
+        if (screen == 0 && leafGo1) {
+            leafGo2 = true;
+        }
+        else if (screen == 0 && go1 && leafPass && !leafGo2) {
+            leafGo1 = true;
+        }
         if (screen == 11 && hover3 && !go2) {
             go2 = true;
         }
         if (screen == 3 && hover4 && !mapPick) {
             mapPick = true;
+        }
+        if (screen == 5 && hover9){
+            leaf2Pick=true;
+            Organizer.leaves++;
+        }
+        if (screen == 7 && hover10){
+            leaf3Pick=true;
+            Organizer.leaves++;
+        }
+        if (screen == 13 && hover11){
+            leaf4Pick=true;
+            Organizer.leaves++;
         }
         if (mapPick && hover5 && bpOpen && !mapOpen && !cardIsOpen) {
             mapOpen = true;
@@ -579,7 +707,42 @@ public class Level2 extends JFrame implements MouseListener, MouseMotionListener
 
         } else {
             hover6 = false;
-
+        }
+        if(x > 185 && x < 185 + 40 && y > 270 && y < 270 + 40){
+            hover7 = true;
+        }
+        else{
+            hover7 = false;
+        }
+        if(x > 513 && x < 643 && y+30 > 298 && y+30 < 434){
+            hover8 = true;
+        }
+        else{
+            hover8 = false;
+        }
+        if(x > 500 && x < 500 + 45 && y > 245 && y < 245 + 45){
+            hover9 = true;
+        }
+        else{
+            hover9 = false;
+        }
+        if(x > 150 && x < 150 + 45 && y > 300 && y < 300 + 45){
+            hover10 = true;
+        }
+        else{
+            hover10 = false;
+        }
+        if(x > 620 && x < 620 + 45 && y > 150 && y < 150 + 45){
+            hover11 = true;
+        }
+        else{
+            hover11 = false;
+        }
+        if(x > 410 && x < 505 && y + 30 > 331 && y + 30 < 430){
+            hover12 = true;
+        }
+        else{
+            hover12 = false;
         }
     }
 
