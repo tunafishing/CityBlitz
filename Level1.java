@@ -259,7 +259,7 @@ public class Level1 extends JFrame implements MouseListener, MouseMotionListener
      * @param e the MouseEvent containing information about the mouse activity.
      */
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getX()+", "+e.getY());
+        //System.out.println(e.getX()+", "+e.getY());
         if (hover1 && !bpOpen && screen != 0) {
             bpOpen = true;
 
